@@ -1,0 +1,84 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <title>Users MVP</title>
+  </head>
+  <body class="container-fluid">
+    <header class="container-lg mt-4 mb-4">
+      <h1 class="text-center text-sm-start">Users Data MVP App <span class="no-wrap">(Vanilla JS)</span></h1>
+    </header>
+    <main class="container-lg mt-4 mb-4">
+      <form action="" class="form col-md-8">
+        <div class="row gy-4 gx-5">
+          <div class="col-sm-6">
+            <label for="login-field" class="form-label">Логин</label>
+            <input id="login-field" class="form-control" type="text" placeholder="Введите логин" required />
+          </div>
+          <div class="col-sm-6">
+            <label for="email-field" class="form-label">Email</label>
+            <input id="email-field" class="form-control" type="email" placeholder="Введите email" required />
+          </div>
+          <div class="col-sm-6">
+            <label for="password-field" class="form-label">Пароль</label>
+            <input id="password-field" class="form-control" type="password" placeholder="Введите пароль" value="defaultPassword" required />
+          </div>
+          <div class="col-sm-6">
+            <label for="animal-field" class="form-label">Животное</label>
+            <select class="form-select" name="form-animal" id="animal-field">
+              <option value="placeholder" disabled selected>Выберите животное</option>
+              <option value="fish">Рыбка</option>
+              <option value="cat">Кошка</option>
+              <option value="mouse">Мышка</option>
+              <option value="dog">Собачка</option>
+              <option value="hummster">Хомячок</option>
+              <option value="parrot">Попугайчик</option>
+            </select>
+          </div>
+          <div class="col-12 text-center text-sm-start">
+            <button type="submit" class="btn btn-primary">Записать</button>
+            <button type="reset" class="btn btn-secondary ms-3">Отменить</button>
+          </div>
+        </div>
+      </form>
+      <div class="views my-5">
+        <div class="table-view container-fluid px-0 my-5">
+          <div class="row justify-content-end">
+            <div class="col-8 col-sm-6 col-md-5 col-lg-4">
+              <input type="text" class="table-view__filter form-control form-control-sm mb-2" placeholder="Фильтр по логину" />
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="table__head">
+                <tr class="table__row table-primary">
+                  <th class="table__cell table__cell--heading">#</th>
+                  <th class="table__cell table__cell--heading">Логин</th>
+                  <th class="table__cell table__cell--heading">Пароль(наоборот)</th>
+                  <th class="table__cell table__cell--heading">Email</th>
+                  <th class="table__cell table__cell--heading">Животное</th>
+                  <th class="table__cell table__cell--heading">Число</th>
+                  <th class="table__cell table__cell--heading no-wrap">Дата записи</th>
+                  <th class="table__cell table__cell--heading">Комментарий</th>
+                </tr>
+              </thead>
+              <tbody class="table__body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="alerts-container container-lg fixed-bottom mb-3"></div>
+    <script src="./js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="./js/Alert.js"></script>
+    <script src="./js/User.js"></script>
+    <script src="./js/Record.js"></script>
+    <script src="./js/UsersModel.js"></script>
+    <script src="./js/TableView.js"></script>
+    <script src="./js/UsersPresenter.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>

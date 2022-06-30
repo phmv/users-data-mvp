@@ -1,0 +1,64 @@
+:root,
+:host {
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+}
+
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../fonts/fa-regular-400.woff2") format("woff2"),
+    url("../fonts/fa-regular-400.ttf") format("truetype");
+}
+
+.far,
+.fa-regular {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 400;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.table__cell.table__cell--comment {
+  position: relative;
+  padding-right: 48px;
+}
+
+.record__delete-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+}
+
+.record__delete-btn::after {
+  content: "\f2ed";
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 400;
+  color: #dc3545;
+}
+
+.alert {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.alert--shown {
+  visibility: visible;
+  opacity: 1;
+}
+
+.alerts-container--animate {
+  transition: all 0.3s ease;
+}
