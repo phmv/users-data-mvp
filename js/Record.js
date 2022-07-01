@@ -20,15 +20,18 @@ class Record {
 
       if (key === "comment") {
         cell.classList.add("table__cell--comment");
-        let deleteButton = document.createElement("button");
         let inputEl = document.createElement("input");
+        let deleteButton = document.createElement("button");
+
+        inputEl.classList.add("record__comment-input", "form-control", "form-control-sm");
+        inputEl.placeholder = "Введите комментарий";
+        inputEl.readOnly = true;
+        inputEl.addEventListener("dblclick", () => this.presenter.commentDblClickHandler(inputEl, this.userId));
+        inputEl.addEventListener("keydown", (e) => this.presenter.commentKeyDownHandler(inputEl, e.code, this.userId));
+        cell.appendChild(inputEl);
 
         deleteButton.classList.add("record__delete-btn");
-        inputEl.classList.add("record__comment-input");
-
-        deleteButton.addEventListener("click", () =>
-          this.presenter.onDelete(this.userId)
-        );
+        deleteButton.addEventListener("click", () => this.presenter.deleteBtnClickHandler(this.userId));
         cell.appendChild(deleteButton);
       } else {
         cell.textContent = value;

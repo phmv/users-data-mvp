@@ -1,6 +1,7 @@
 class UsersModel {
   constructor(presenter, list = {}) {
     this.presenter = presenter;
+    this.viewsUpdater = presenter.viewsUpdater;
     this.list = list;
   }
 
@@ -14,12 +15,16 @@ class UsersModel {
       }
     }
     this.list[id] = newUser;
-    this.presenter.updateViews("add", Object.assign({}, newUser), id);
+    this.viewsUpdater.updateViews("add", Object.assign({}, newUser), id);
   }
 
   delete(id) {
     if (!this.list[id]) throw new Error("Такого пользователя не существует");
     delete this.list[id];
-    this.presenter.updateViews("delete", id);
+    this.viewsUpdater.updateViews("delete", id);
+  }
+
+  editComment(text, userId) {
+    this.list[userId].comment = text;
   }
 }

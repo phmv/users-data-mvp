@@ -1,24 +1,20 @@
 class UsersPresenter {
   #model;
   #tableView;
-  #viewsObservingEvents = {};
 
   constructor(inputs) {
+    this.viewsUpdater = new ViewsUpdater();
     this.#model = new UsersModel(this);
     this.#tableView = new TableView(this);
     this._inputs = inputs;
+    this._userFieldEditing = {};
     this.#addListeners();
   }
 
   #addListeners() {
-    this._inputs.formEl.addEventListener(
-      "submit",
-      this.#onFormSubmit.bind(this)
-    );
-    this._inputs.filterField.addEventListener(
-      "input",
-      this.#onFilterInput.bind(this)
-    );
+    this._inputs.formEl.addEventListener("submit", this.#onFormSubmit.bind(this));
+    this._inputs.filterField.addEventListener("input", this.#onFilterInput.bind(this));
+    document.addEventListener("click", this.outOfCommentClickHandler.bind(this));
   }
 
   #onFormSubmit(e) {
@@ -26,8 +22,14 @@ class UsersPresenter {
     let login = this._inputs.loginInput.value;
     let password = this._inputs.passwordInput.value;
     let email = this._inputs.emailInput.value;
-    let animal =
-      this._inputs.animalInput[this._inputs.animalInput.selectedIndex].text;
+
+    if (this._inputs.animalInput.value === "placeholder") {
+      new Alert("warning", "Выберите животное");
+      this._inputs.animalInput.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+
+    let animal = this._inputs.animalInput[this._inputs.animalInput.selectedIndex].text;
     let uniqueId = "id" + new Date().getTime();
     let newUser = new User(login, password, email, animal);
     try {
@@ -38,29 +40,45 @@ class UsersPresenter {
   }
 
   #onFilterInput(e) {
-    this.updateViews("filter", e.target.value);
+    this.viewsUpdater.updateViews("filter", e.target.value);
   }
 
-  onDelete(userId) {
+  deleteBtnClickHandler(userId) {
     this.#model.delete(userId);
   }
 
-  updateViews(action, ...args) {
-    this.#viewsObservingEvents[action].forEach((fn) => fn(...args));
-  }
-
-  bindViewEvent(action, callbackFn) {
-    if (!this.#viewsObservingEvents[action]) {
-      this.#viewsObservingEvents[action] = [];
-      this.#viewsObservingEvents[action].push(callbackFn);
-    } else {
-      this.#viewsObservingEvents[action].push(callbackFn);
+  commentDblClickHandler(input, userId) {
+    if (input.readOnly === true) {
+      this.commentInputEdit(input, userId);
     }
   }
 
-  removeViewEvent(action, callbackFn) {
-    this.#viewsObservingEvents[action] = this.#viewsObservingEvents[
-      action
-    ].filter((fn) => fn !== callbackFn);
+  commentKeyDownHandler(input, keycode, userId) {
+    if (keycode !== "Enter") return;
+    if (input === this._userFieldEditing.input) {
+      this.commentInputAccept();
+    } else {
+      this.commentInputEdit(input, userId);
+    }
+  }
+
+  outOfCommentClickHandler(e) {
+    if (!this._userFieldEditing.input) return;
+    if (e.target === this._userFieldEditing.input) return;
+    this.commentInputAccept();
+  }
+
+  commentInputEdit(input, userId) {
+    this._userFieldEditing.input = input;
+    this._userFieldEditing.input.readOnly = false;
+    this._userFieldEditing.userId = userId;
+  }
+
+  commentInputAccept() {
+    let commentText = this._userFieldEditing.input;
+    let userId = this._userFieldEditing.userId;
+    this.#model.editComment(commentText, userId);
+    this._userFieldEditing.input.readOnly = true;
+    this._userFieldEditing = {};
   }
 }
