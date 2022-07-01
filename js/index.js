@@ -6,5 +6,4 @@ const inputs = {
   animalInput: document.getElementById("animal-field"),
   filterField: document.querySelector(".table-view__filter"),
 };
-
 const usersPresenter = new UsersPresenter(inputs);
