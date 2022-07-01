@@ -16,13 +16,5 @@ class User {
   set date(date) {
     let formatter1 = new Intl.DateTimeFormat("ru");
     this._date = formatter1.format(date);
-    // let mm = date.getMonth() + 1; // getMonth() is zero-based
-    // let dd = date.getDate();
-
-    // this._date = [
-    //   (dd > 9 ? "" : "0") + dd,
-    //   (mm > 9 ? "" : "0") + mm,
-    //   date.getFullYear(),
-    // ].join(".");
   }
 }
