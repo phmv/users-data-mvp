@@ -10,8 +10,9 @@ class Record {
     let recordRow = document.createElement("tr");
     recordRow.classList.add("table__row", "record");
 
-    let idCell = document.createElement("td");
+    let idCell = document.createElement("th");
     idCell.classList.add("table__cell", "table__cell--id");
+    idCell.setAttribute("scope", "row");
 
     recordRow.appendChild(idCell);
     for (let [key, value] of Object.entries(user)) {
