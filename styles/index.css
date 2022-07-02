@@ -8,8 +8,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url("../fonts/fa-regular-400.woff2") format("woff2"),
-    url("../fonts/fa-regular-400.ttf") format("truetype");
+  src: url("../fonts/fa-regular-400.woff2") format("woff2"), url("../fonts/fa-regular-400.ttf") format("truetype");
 }
 
 .far,
@@ -62,4 +61,24 @@
 
 .alerts-container--animate {
   transition: all 0.3s ease;
+}
+
+.table-responsive {
+  max-height: 300px;
+}
+
+.table__head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.table__cell:nth-child(2) {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.table__body .table__cell:nth-child(2) {
+  background-color: #ffffff;
 }
