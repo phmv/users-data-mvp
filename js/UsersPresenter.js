@@ -22,7 +22,6 @@ class UsersPresenter {
     let login = this._inputs.loginInput.value;
     let password = this._inputs.passwordInput.value;
     let email = this._inputs.emailInput.value;
-
     if (this._inputs.animalInput.value === "placeholder") {
       new Alert("warning", "Выберите животное");
       this._inputs.animalInput.scrollIntoView({ behavior: "smooth" });
@@ -34,6 +33,7 @@ class UsersPresenter {
     let newUser = new User(login, password, email, animal);
     try {
       this.#model.add(newUser, uniqueId);
+      this._inputs.filterField.value = "";
     } catch (err) {
       new Alert("warning", err.message);
     }
