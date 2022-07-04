@@ -1,11 +1,13 @@
 class UsersPresenter {
   #model;
   #tableView;
+  #cardsView;
 
   constructor(inputs) {
     this.viewsUpdater = new ViewsUpdater();
     this.#model = new UsersModel(this);
     this.#tableView = new TableView(this);
+    this.#cardsView = new CardsView(this);
     this._inputs = inputs;
     this._userFieldEditing = {};
     this.#addListeners();
@@ -75,7 +77,7 @@ class UsersPresenter {
   }
 
   commentInputAccept() {
-    let commentText = this._userFieldEditing.input;
+    let commentText = this._userFieldEditing.input.value;
     let userId = this._userFieldEditing.userId;
     this.#model.editComment(commentText, userId);
     this._userFieldEditing.input.readOnly = true;

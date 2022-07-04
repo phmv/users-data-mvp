@@ -5,7 +5,7 @@ class UsersModel {
     this.list = list;
   }
 
-  add(newUser, id) {
+  add(newUser, userId) {
     for (let user of Object.values(this.list)) {
       if (user.login === newUser.login) {
         throw new Error("Пользователь с таким логином уже существует");
@@ -14,17 +14,18 @@ class UsersModel {
         throw new Error("Пользователь с таким email уже существует");
       }
     }
-    this.list[id] = newUser;
-    this.viewsUpdater.updateViews("add", Object.assign({}, newUser), id);
+    this.list[userId] = newUser;
+    this.viewsUpdater.updateViews("add", Object.assign({}, newUser), userId);
   }
 
-  delete(id) {
-    if (!this.list[id]) throw new Error("Такого пользователя не существует");
-    delete this.list[id];
-    this.viewsUpdater.updateViews("delete", id);
+  delete(userId) {
+    if (!this.list[userId]) throw new Error("Такого пользователя не существует");
+    delete this.list[userId];
+    this.viewsUpdater.updateViews("delete", userId);
   }
 
   editComment(text, userId) {
     this.list[userId].comment = text;
+    this.viewsUpdater.updateViews("editComment", text, userId);
   }
 }
