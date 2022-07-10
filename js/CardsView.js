@@ -23,6 +23,6 @@ class CardsView {
 
   editComment(text, userId) {
     let cardToEdit = this.cards.find((card) => card.userId === userId);
-    cardToEdit.commentEl.textContent = text;
+    cardToEdit.comment = text;
   }
 }
