@@ -1,6 +1,7 @@
 class Record {
   constructor(user, userId, presenter) {
     this.presenter = presenter;
+    this.login = user.login;
     this.userId = userId;
     this.htmlEl = this.#buildHtml(user);
   }
