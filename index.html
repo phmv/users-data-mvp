@@ -29,8 +29,8 @@
           </div>
           <div class="col-sm-6">
             <label for="animal-field" class="form-label">Животное</label>
-            <select class="form-select" name="form-animal" id="animal-field">
-              <option value="placeholder" disabled selected>Выберите животное</option>
+            <select class="form-select" name="form-animal" id="animal-field" required>
+              <option value="" disabled selected>Выберите животное</option>
               <option value="fish">Рыбка</option>
               <option value="cat">Кошка</option>
               <option value="mouse">Мышка</option>
@@ -47,6 +47,7 @@
       </form>
       <div class="views my-5">
         <div class="table-view container-fluid px-0 my-5">
+          <h2 class="text-center text-sm-start">Table View</h2>
           <div class="row justify-content-end">
             <div class="col-8 col-sm-6 col-md-5 col-lg-4">
               <input type="text" class="table-view__filter form-control form-control-sm mb-2" placeholder="Фильтр по логину" />
@@ -71,6 +72,7 @@
           </div>
         </div>
         <div class="cards-view container-fluid px-0 my-5">
+          <h2 class="text-center text-sm-start mb-3">Cards View</h2>
           <div class="cards container-fluid px-0"></div>
         </div>
       </div>

@@ -24,11 +24,6 @@ class UsersPresenter {
     let login = this._inputs.loginInput.value;
     let password = this._inputs.passwordInput.value;
     let email = this._inputs.emailInput.value;
-    if (this._inputs.animalInput.value === "placeholder") {
-      new Alert("warning", "Выберите животное");
-      this._inputs.animalInput.scrollIntoView({ behavior: "smooth" });
-      return;
-    }
 
     let animal = this._inputs.animalInput[this._inputs.animalInput.selectedIndex].text;
     let uniqueId = "id" + new Date().getTime();
