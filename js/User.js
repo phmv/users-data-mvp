@@ -13,6 +13,8 @@ class User {
           return this._password.split("").reverse().join("");
         },
       },
+      // Passed Object.assign({}, newUser) as parameter to ViewsUpdater in UserModel.js to prevent changing real User object by any of View
+      // Object.assign iterating over properties when copying in new object, that's why didn't use just get date(), because getters aren't enumerable
       date: {
         enumerable: true,
         get: function () {
